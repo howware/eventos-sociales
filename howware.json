@@ -1,0 +1,53 @@
+{
+  "howware": "0.2",
+  "name": "eventos-sociales",
+  "version": "0.1.0",
+  "description": "Social events planner without an app: a wedding, XV años or baptism planned from a countdown template that the couple or the wedding planner adjusts, with vendors, payments, budget, sponsors, guests, tables and the day's program kept exact.",
+  "license": "Apache-2.0",
+  "languages": [
+    "en",
+    "es"
+  ],
+  "hosts": [],
+  "skill": "skill/eventos-sociales",
+  "adapters": [
+    {
+      "name": "project-memory",
+      "version": ">=0.4.0",
+      "url": "https://github.com/howware/long-term-memory-for-AI"
+    }
+  ],
+  "tools": [
+    {
+      "name": "eventos.py",
+      "network": false,
+      "dependencies": []
+    }
+  ],
+  "memory": {
+    "kind": "local-sqlite",
+    "append_only": true,
+    "seed_version": "1"
+  },
+  "privacy": {
+    "stays_local": [
+      "the memory file with the events, their tasks, budget, vendors, payments, sponsors, invitations, tables and program (the agent queries it and sees the answers)",
+      "a guest list the owner imports from a file: the tool reads it and stores only name, group, seats, RSVP, diet and note"
+    ],
+    "agent_sees": [
+      "the events, their dates and the plan's tasks",
+      "the amounts: budget, contracts, payments and who made them",
+      "vendors' names, and their contact data if the owner gives it",
+      "the invitations as the owner names them, with group, seats, RSVP, diet, note and table, when it queries them",
+      "everything the owner types in the conversation"
+    ],
+    "cannot_guarantee": [
+      "what the agent sees leaves the computer for the AI provider, under its terms; the guests are third parties who did not choose to share their names or diets: use nicknames or initials if you prefer",
+      "the memory file is not encrypted",
+      "a dropped task, a removed invitation or a voided payment stops showing but stays in the memory file",
+      "there are no notifications or reminders: what is due is shown only when the owner opens a conversation",
+      "the template's tasks and suggested budget are general references, not legal or financial advice; civil and church requirements change by place",
+      "the memory lives on one computer: two people planning together don't share it automatically"
+    ]
+  }
+}
