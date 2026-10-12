@@ -1,7 +1,7 @@
 {
   "howware": "0.2",
   "name": "eventos-sociales",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Social events planner without an app: a wedding, XV años or baptism planned from a countdown template that the couple or the wedding planner adjusts, with vendors, payments, budget, sponsors, guests, tables and the day's program kept exact.",
   "license": "Apache-2.0",
   "languages": [

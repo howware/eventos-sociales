@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- **Fixed:** when a command stopped early (for example, `brief` before `setup`), the parallel reads of the
+  memory could be left running and keep the memory file open; on Windows the file then couldn't be moved or
+  deleted. The tool now waits for all of them.
+
 ## 0.1.0 — first version
 
 - Protocol for planning a wedding (or XV años, a baptism…) without an app, for the couple or a wedding planner with

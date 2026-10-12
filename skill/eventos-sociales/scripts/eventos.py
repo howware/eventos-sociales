@@ -44,7 +44,7 @@ from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 HERE = Path(__file__).resolve().parent
 SEED = HERE / "seed.json"
 MIN_MEMORY = (0, 4, 0)
@@ -119,9 +119,9 @@ class Memory:
         """Several `list` queries at once, in parallel processes; later pages, rarely needed, one by one."""
         procs = [subprocess.Popen(self.command(("list", *q, "--limit", str(self.PAGE))), stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE, text=True, encoding="utf-8") for q in queries]
+        done = [proc.communicate() for proc in procs]    # wait for every process before reading any result
         out = []
-        for q, proc in zip(queries, procs):
-            stdout, stderr = proc.communicate()
+        for q, proc, (stdout, stderr) in zip(queries, procs, done):
             if proc.returncode != 0:
                 raise ToolError(f"memory list failed: {(stderr or stdout).strip()[-600:]}", MEMORY_ERROR)
             page = json.loads(stdout)
